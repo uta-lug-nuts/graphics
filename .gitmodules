@@ -1,0 +1,4 @@
+[submodule "dotfiles/rcghpge"]
+	path = dotfiles/rcghpge
+	url = https://github.com/rcghpge/dotfiles
+	branch = main
