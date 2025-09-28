@@ -1,19 +1,30 @@
 .PHONY: init update validate
 
 init:
-\tgit submodule update --init --recursive
+	@echo "[INFO] Initializing submodules..."
+	@git submodule update --init --recursive
+	@echo "[OK] Submodules initialized."
 
 update:
-\tgit submodule update --remote --recursive
-\tgit add dotfiles || true
-\tgit commit -m "Bump submodules" || true
+	@echo "[INFO] Updating submodules to latest remote..."
+	@git submodule update --remote --recursive
+	@git add dotfiles || true
+	@git commit -m "Bump submodules" || true
+	@echo "[OK] Submodules updated and commit recorded."
 
 validate:
-\t@grep -E 'path = ' .gitmodules >/dev/null 2>&1 || { echo "No submodules found."; exit 0; }
-\t@bad=0; \\
-\twhile read -r path; do \\
-\t  if ! echo "$$path" | grep -Eq '^dotfiles/[a-z0-9-]+(|/[a-z0-9]+-[a-z0-9]+(-[a-z0-9]+)?)$$'; then \\
-\t    echo "Invalid submodule path: $$path"; bad=1; \\
-\t  fi; \\
-\tdone < <(grep -E 'path = ' .gitmodules | sed 's/.*path = //'); \\
-\texit $$bad
+	@echo "[INFO] Validating submodule paths..."
+	@if ! grep -qE 'path = ' .gitmodules 2>/dev/null; then \
+	  echo "[INFO] No submodules found. Nothing to validate."; \
+	  exit 0; \
+	fi; \
+	bad=0; \
+	for path in $$(grep -E 'path = ' .gitmodules | sed 's/.*path = //'); do \
+	  if echo "$$path" | grep -Eq '^dotfiles/[a-z0-9-]+(|/[a-z0-9]+-[a-z0-9]+(-[a-z0-9]+)?)$$'; then \
+	    echo "[OK] $$path is valid."; \
+	  else \
+	    echo "[ERROR] Invalid submodule path: $$path"; \
+	    bad=1; \
+	  fi; \
+	done; \
+	exit $$bad
