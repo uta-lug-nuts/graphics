@@ -1,6 +1,6 @@
 # graphics
 
-Lug Nuts Club — Ricing, dotfiles, graphics repository.
+Lug Nuts Club — Ricing, dotfiles, and graphics repository.
 
 This repository aggregates **club members' dotfiles** via [Git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules). Each member keeps ownership of their own upstream repo — this root repo just points to them.
 
