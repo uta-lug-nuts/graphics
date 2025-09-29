@@ -1,0 +1,7 @@
+# Source tree root gitignores
+.DS_Store
+*.swp
+*.swo
+
+# Note: Generated assets inside submodules from Lug Nuts members,
+# keep those at respective individual upstream repos' .gitignore, not here.
