@@ -10,10 +10,11 @@ entries:
     #wm: i3
     #tags: [terminal, tiling, nerd-fonts]
 
-  # Example (flavors per person)
+  # Example (1 submodule repository per contributor)
   # - handle: alex
   #   url: https://github.com/alex/dotfiles-arch-hypr
   #   path: dotfiles/alex/arch-hypr
+  #.  Below is a wip.
   #   os: arch
   #   wm: hypr
   #   host: hpz8
